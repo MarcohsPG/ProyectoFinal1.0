@@ -1,0 +1,149 @@
+<?php
+include_once('./php/conexion-db.php');
+session_start();
+$referencia=$_SESSION['telefono'];
+
+if (($referencia == null || $referencia ='')and($referencia11 == null || $referencia11 ='')){
+    echo "Usted no tiene acceso. Inicie sesión para ingresar.";
+    die();
+}
+else{
+    $referencia=$_SESSION['telefono'];
+    $conectar=conexion();
+    $sql="SELECT * FROM vacantes";
+    $result=mysqli_query($conectar,$sql);
+    $sql2="SELECT * FROM cuentas WHERE telefono = '$referencia'";
+    $result2=mysqli_query($conectar,$sql2);
+    $datosUser=mysqli_fetch_array($result2);
+     
+}?>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1">
+    <title>El Último Jale</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/lykmapipo/themify-icons@0.1.2/css/themify-icons.css">
+    <link rel="stylesheet" href="./css/home.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@300;500;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Amatic+SC:wght@700&family=Quicksand:wght@300;500;700&family=Righteous&display=swap" rel="stylesheet">   
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="https://necolas.github.io/normalize.css/8.0.1/normalize.css">
+    <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous" />
+    <link rel="icon" href="./img/work.png">
+    <link rel="stylesheet" href="./css/perfil.css"/>
+</head>
+<body>
+<input type="checkbox" id="sidebar-toggle">
+    <div class="sidebar">
+        <div class="sidebar-header">
+            <h3 class="brand">
+                <span><img src="./img/work.png" alt=""></span> 
+                <span>El Último Jale</span>
+            </h3> 
+            <label for="sidebar-toggle" class="ti-menu-alt"></label>
+        </div>
+        
+        <div class="sidebar-menu">
+            <ul>
+                <li>
+                    <a href="./home.php">
+                        <span class="ti-home"></span>
+                        <span>Home</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="./perfil.php">
+                        <span class="ti-face-smile"></span>
+                        <span>Perfil</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="./empresas.html">
+                        <span class="ti-agenda"></span>
+                        <span>Empresas</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#">
+                        <span class="ti-clipboard"></span>
+                        <span>Curriculum</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="./buscador.php">
+                        <span class="ti-search"></span>
+                        <span>Buscar</span>
+                    </a>
+                </li>
+                
+                <li>
+                    <a href="./php/cerrrar-sesion.php">
+                        <span class="ti-settings"></span>
+                        <span>Cerrar Sesión</span>
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <div class="main-content">
+    <header>
+            <div class="search-wrapper">
+            <form action="./buscador.php" method="POST">
+                <span class="ti-search"></span>
+                <input type="search" name="puesto" placeholder="¿A que te dedicas?">
+                <input type="submit" value="Buscar">
+                </form>
+            </div>
+            
+            <div class="social-icons">
+                <span class="ti-bell"></span>
+                <span class="ti-comment"></span>
+                <div></div>
+            </div>
+        </header>
+    </div>
+<section class="seccion-perfil-usuario">
+        <div class="perfil-usuario-header">
+            <div class="perfil-usuario-portada">
+                <div class="perfil-usuario-avatar">
+                    <img src="data:image/jpg;base64,<?php echo base64_encode($datosUser['foto']);?>" alt="img-avatar">
+                    <button type="button" class="boton-avatar">
+                        <i class="far fa-image"></i>
+                    </button>
+                </div>
+                <button type="button" class="boton-portada">
+                    <i class="far fa-image"></i> Cambiar fondo
+                </button>
+            </div>
+        </div>
+        <div class="perfil-usuario-body">
+            <div class="perfil-usuario-bio">
+                <h3 class="titulo"><?php echo $datosUser['nombres'];echo $datosUser['apellidos']?></h3>
+                <p class="texto"><?php echo $datosUser['descripcion'] ?></p>
+            </div>
+            <div class="perfil-usuario-footer">
+                <ul class="lista-datos">
+                    <li><i class="icono fas fa-map-signs"></i> Ubicación:<?php echo $datosUser['ubicacion'] ?></li>
+                    <li><i class="icono fas fa-phone-alt"></i> Telefono:<?php echo $datosUser['telefono'] ?></li>
+                    <li><i class="icono fas fa-briefcase"></i> Trabajo actual:<?php echo $datosUser['trabajoActual'] ?></li>
+                    <li><i class="icono fas fa-building"></i> Cargo u Ocupación:<?php echo $datosUser['ocupacion'] ?></li>
+                </ul>
+                <ul class="lista-datos">
+                    <li><i class="icono fas fa-map-marker-alt"></i> Dirección:<?php echo $datosUser['direccion'] ?></li>
+                    <li><i class="icono fas fa-calendar-alt"></i> Edad:<?php echo 2022-$datosUser['edad']; ?></li>
+                    <li><i class="icono fas fa-user-check"></i> Verificado:<?php echo $datosUser['verificado'] ?></li>
+                    <li><i class="icono fas fa-share-alt"></i> Habilidades:<?php echo $datosUser['habilidades'] ?></li>
+                </ul>
+            </div>
+            <div class="redes-sociales">
+                <a href="" class="boton-redes facebook fab fa-facebook-f"><i class="icon-facebook"></i></a>
+                <a href="" class="boton-redes twitter fab fa-twitter"><i class="icon-twitter"></i></a>
+                <a href="" class="boton-redes instagram fab fa-instagram"><i class="icon-instagram"></i></a>
+            </div>
+        </div>
+    </section>
+</body>
+</html>
