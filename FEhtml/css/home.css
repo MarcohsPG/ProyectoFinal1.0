@@ -293,6 +293,7 @@ tbody tr:nth-child(even) {
     padding: .5rem 1rem;
     display: flex;
     align-items: center;
+    height: 10em;
 }
 
 .summary-single span {
