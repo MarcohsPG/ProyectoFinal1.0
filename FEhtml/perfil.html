@@ -1,4 +1,4 @@
-<?php
+<!--<?php
 include_once('./php/conexion-db.php');
 session_start();
 $referencia=$_SESSION['telefono'];
@@ -16,13 +16,13 @@ else{
     $result2=mysqli_query($conectar,$sql2);
     $datosUser=mysqli_fetch_array($result2);
      
-}?>
+}?>-->
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1">
-    <title>El Último Jale</title>
+    <title>Alza La Voz</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/lykmapipo/themify-icons@0.1.2/css/themify-icons.css">
     <link rel="stylesheet" href="./css/home.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -74,7 +74,7 @@ else{
                 </li>
                 
                 <li>
-                    <a href="./php/index.html">
+                    <a href="./index.html">
                         <span class="ti-settings"></span>
                         <span>Cerrar Sesión</span>
                     </a>
@@ -121,23 +121,27 @@ else{
             </div>
             <div class="perfil-usuario-footer">
                 <ul class="lista-datos">
-                    <li><i class="icono fas fa-map-signs"></i> Ubicación:<?php echo $datosUser['ubicacion'] ?></li>
+                    <!--<li><i class="icono fas fa-map-signs"></i> Ubicación:<?php echo $datosUser['ubicacion'] ?></li>-->
                     <li><i class="icono fas fa-phone-alt"></i> Telefono:<?php echo $datosUser['telefono'] ?></li>
-                    <li><i class="icono fas fa-briefcase"></i> Trabajo actual:<?php echo $datosUser['trabajoActual'] ?></li>
-                    <li><i class="icono fas fa-building"></i> Cargo u Ocupación:<?php echo $datosUser['ocupacion'] ?></li>
+                    <li><i class="icono fas fa-user-check"></i> Verificado:<?php echo $datosUser['verificado'] ?></li>
+                    <!--<li><i class="icono fas fa-briefcase"></i> Trabajo actual:<?php echo $datosUser['trabajoActual'] ?></li>-->
+                    <!--<li><i class="icono fas fa-building"></i> Cargo u Ocupación:<?php echo $datosUser['ocupacion'] ?></li>-->
                 </ul>
                 <ul class="lista-datos">
-                    <li><i class="icono fas fa-map-marker-alt"></i> Dirección:<?php echo $datosUser['direccion'] ?></li>
+                    <!--<li><i class="icono fas fa-map-marker-alt"></i> Dirección:<?php echo $datosUser['direccion'] ?></li>-->
                     <li><i class="icono fas fa-calendar-alt"></i> Edad:<?php echo 2022-$datosUser['edad']; ?></li>
-                    <li><i class="icono fas fa-user-check"></i> Verificado:<?php echo $datosUser['verificado'] ?></li>
-                    <li><i class="icono fas fa-share-alt"></i> Habilidades:<?php echo $datosUser['habilidades'] ?></li>
+                    
+                    <!--<li><i class="icono fas fa-share-alt"></i> Habilidades:<?php echo $datosUser['habilidades'] ?></li>-->
                 </ul>
             </div>
-            <div class="redes-sociales">
-                <a href="" class="boton-redes facebook fab fa-facebook-f"><i class="icon-facebook"></i></a>
-                <a href="" class="boton-redes twitter fab fa-twitter"><i class="icon-twitter"></i></a>
-                <a href="" class="boton-redes instagram fab fa-instagram"><i class="icon-instagram"></i></a>
-            </div>
+            <!--
+
+                <div class="redes-sociales">
+                    <a href="" class="boton-redes facebook fab fa-facebook-f"><i class="icon-facebook"></i></a>
+                    <a href="" class="boton-redes twitter fab fa-twitter"><i class="icon-twitter"></i></a>
+                    <a href="" class="boton-redes instagram fab fa-instagram"><i class="icon-instagram"></i></a>
+                </div>
+            -->
         </div>
     </section>
 </body>
