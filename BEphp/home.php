@@ -24,7 +24,7 @@ else{
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1">
-    <title>El Último Jale</title>
+    <title>Alza La Voz</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/lykmapipo/themify-icons@0.1.2/css/themify-icons.css">
     <link rel="stylesheet" href="./css/home.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -42,7 +42,7 @@ else{
         <div class="sidebar-header">
             <h3 class="brand">
                 <span><img src="./img/work.png" alt=""></span> 
-                <span>El Último Jale</span>
+                <span>Alza La Voz</span>
             </h3> 
             <label for="sidebar-toggle" class="ti-menu-alt"></label>
         </div>
