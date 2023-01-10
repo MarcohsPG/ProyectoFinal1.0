@@ -1,4 +1,5 @@
 import crypto from 'crypto';
+import internal from 'stream';
 import DB from "./db";
 
 class accountDAO {
@@ -20,13 +21,30 @@ class accountDAO {
 	static async getAccountInfo(telefono: Number) {
 		let db = new DB();
 		let result: any = await db.preparedStatement(
-			"SELECT * FROM usuario u WHERE u.telefono = ?",
+			"SELECT u.nombres, u.apellidos, u.telefono, u.email FROM usuario u WHERE u.telefono = ?",
 			[
 				telefono
 			]
 		);
 		db.disconnect();
 		return result[0];
+	}
+
+	static async createUsuario(nombres: String, apellidos: String, telefono: Number, email: String, pass: string) {
+		let hash: String = crypto.createHash("md5").update(pass).digest("hex");
+		let db = new DB();
+		let result: any = await db.preparedStatement(
+			"CALL crearUsuario(?, ?, ?, ?, ?)",
+			[
+				nombres,
+				apellidos,
+				telefono,
+				email,
+				hash
+			]
+		);
+		db.disconnect();
+		return result[0][0];
 	}
 }
 

@@ -1,4 +1,5 @@
 import { Router } from 'express';
+import { validateSession } from '../account/account.router';
 
 // Export module for registering router in express app
 export const router: Router = Router();
@@ -13,7 +14,11 @@ router.get("/registro", (req, res) => {
 	res.render("registro");
 });
 router.get("/sesion", (req, res) => {
-	res.render("sesion");
+	if (validateSession(req)) {
+		res.redirect("account/home")
+	} else {
+		res.render("sesion");
+	}
 });
 router.get("/tutorial", (req, res) => {
 	res.render("tutorial");

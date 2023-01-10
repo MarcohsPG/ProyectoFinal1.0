@@ -5,6 +5,34 @@
     <title>Alza La Voz</title>
     <meta charset="utf-8">
     <link rel="stylesheet" type="text/css" href="/css/formulario.css">
+
+    <script type="text/javascript" src="https://code.jquery.com/jquery-3.6.3.js"></script>
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script>
+        $(document).ready(() => {
+            $("#form-registro").submit(async (ev) => {
+                ev.preventDefault();
+                data = $("#form-registro").serializeArray();
+                let res = await $.post("/denuncia.do", data);
+                if (res.error) {
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'Error',
+                        text: res.msg
+                    })
+                } else {
+                    Swal.fire({
+                        icon: 'success',
+                        title: 'Exito',
+                        text: res.msg
+                    })
+                    setTimeout(() => {
+                        window.location = "/";
+                    }, 2000);
+                }
+            });
+        })
+    </script>
 </head>
 
 <body>
@@ -118,8 +146,7 @@
             <div class="formulario__grupo" id="grupo__correo">
                 <label for="correo" class="formulario__label">CORREO ELECTRONICO</label>
                 <div class="formulario__grupo-input">
-                    <input type="email" class="formulario__input" name="correo" id="correo"
-                        placeholder="ejemplo123@gmail.com">
+                    <input type="email" class="formulario__input" name="correo" id="correo" placeholder="ejemplo123@gmail.com">
                     <i class="formulario__validacion-estado fas fa-times-circle"></i>
                 </div>
                 <p class="formulario__input-error">El dato ingresado solo puede conter letras, numeros, guiones, puntos
@@ -145,8 +172,7 @@
             <div class="formulario__grupo" id="grupo__tipo">
                 <label for="tipo" class="formulario__label">TIPO DE VICTIMA</label>
                 <div class="formulario__grupo-input">
-                    <input type="text" class="formulario__input" name="tipo" id="tipo"
-                        placeholder="Directa, Indirecta o Potencial">
+                    <input type="text" class="formulario__input" name="tipo" id="tipo" placeholder="Directa, Indirecta o Potencial">
                     <i class="formulario__validacion-estado fas fa-times-circle"></i>
                 </div>
                 <p class="formulario__input-error">El dato ingresado no puede contener numeros ni caracteres de otro
@@ -158,8 +184,7 @@
             <div class="formulario__grupo" id="grupo__nombrevictima">
                 <label for="nombrevictima" class="formulario__label">NOMBRE</label>
                 <div class="formulario__grupo-input">
-                    <input type="text" class="formulario__input" name="nombrevictima" id="nombrevictima"
-                        placeholder="Luis">
+                    <input type="text" class="formulario__input" name="nombrevictima" id="nombrevictima" placeholder="Luis">
                     <i class="formulario__validacion-estado fas fa-times-circle"></i>
                 </div>
                 <p class="formulario__input-error">El nombre no puede contener numeros ni caracteres de otro tipo</p>
@@ -170,8 +195,7 @@
             <div class="formulario__grupo" id="grupo__apellido1vic">
                 <label for="apellido1vic" class="formulario__label">PRIMER APELLIDO</label>
                 <div class="formulario__grupo-input">
-                    <input type="text" class="formulario__input" name="apellido1vic" id="apellido1vic"
-                        placeholder="Perez">
+                    <input type="text" class="formulario__input" name="apellido1vic" id="apellido1vic" placeholder="Perez">
                     <i class="formulario__validacion-estado fas fa-times-circle"></i>
                 </div>
                 <p class="formulario__input-error">El primer apellido no puede contener numeros ni caracteres de otro
@@ -183,8 +207,7 @@
             <div class="formulario__grupo" id="grupo__apellido2vic">
                 <label for="apellido2vic" class="formulario__label">SEGUNDO APELLIDO</label>
                 <div class="formulario__grupo-input">
-                    <input type="text" class="formulario__input" name="apellido2vic" id="apellido2vic"
-                        placeholder="Perez">
+                    <input type="text" class="formulario__input" name="apellido2vic" id="apellido2vic" placeholder="Perez">
                     <i class="formulario__validacion-estado fas fa-times-circle"></i>
                 </div>
                 <p class="formulario__input-error">El segundo apellido no puede contener numeros ni caracteres de otro
@@ -196,8 +219,7 @@
             <div class="formulario__grupo" id="grupo__nacimiento">
                 <label for="nacimiento" class="formulario__label">FECHA DE NACIMIENTO</label>
                 <div class="formulario__grupo-input">
-                    <input type="text" class="formulario__input" name="nacimiento" id="nacimiento"
-                        placeholder="dd/mm/yyyy">
+                    <input type="date" class="formulario__input" name="nacimiento" id="nacimiento" placeholder="dd/mm/yyyy">
                     <i class="formulario__validacion-estado fas fa-times-circle"></i>
                 </div>
                 <p class="formulario__input-error">El dato ingresado debe contener solo numeros,con el formato
@@ -221,8 +243,7 @@
             <div class="formulario__grupo" id="grupo__nacionalidad">
                 <label for="nacionalidad" class="formulario__label">NACIONALIDAD</label>
                 <div class="formulario__grupo-input">
-                    <input type="text" class="formulario__input" name="nacionalidad" id="nacionalidad"
-                        placeholder="Mexicana">
+                    <input type="text" class="formulario__input" name="nacionalidad" id="nacionalidad" placeholder="Mexicana">
                     <i class="formulario__validacion-estado fas fa-times-circle"></i>
                 </div>
                 <p class="formulario__input-error">El dato ingresado no puede contener numeros ni caracteres de otro
@@ -246,8 +267,7 @@
             <div class="formulario__grupo" id="grupo__lugarnaci">
                 <label for="lugarnaci" class="formulario__label">LUGAR DE NACIMIENTO</label>
                 <div class="formulario__grupo-input">
-                    <input type="text" class="formulario__input" name="lugarnaci" id="lugarnaci"
-                        placeholder="Ciudad de Mexico">
+                    <input type="text" class="formulario__input" name="lugarnaci" id="lugarnaci" placeholder="Ciudad de Mexico">
                     <i class="formulario__validacion-estado fas fa-times-circle"></i>
                 </div>
                 <p class="formulario__input-error">El dato ingresado no puede contener numeros ni caracteres de otro
@@ -259,8 +279,7 @@
             <div class="formulario__grupo" id="grupo__estadocivil">
                 <label for="estadocivil" class="formulario__label">ESTADO CIVIL</label>
                 <div class="formulario__grupo-input">
-                    <input type="text" class="formulario__input" name="estadocivil" id="estadocivil"
-                        placeholder="Soltero/a">
+                    <input type="text" class="formulario__input" name="estadocivil" id="estadocivil" placeholder="Soltero/a">
                     <i class="formulario__validacion-estado fas fa-times-circle"></i>
                 </div>
                 <p class="formulario__input-error">El dato ingresado no puede contener numeros ni caracteres de otro
@@ -321,8 +340,7 @@
             <div class="formulario__grupo" id="grupo__colonia">
                 <label for="colonia" class="formulario__label">COLONIA</label>
                 <div class="formulario__grupo-input">
-                    <input type="text" class="formulario__input" name="colonia" id="colonia"
-                        placeholder="San Juan de Aragon">
+                    <input type="text" class="formulario__input" name="colonia" id="colonia" placeholder="San Juan de Aragon">
                     <i class="formulario__validacion-estado fas fa-times-circle"></i>
                 </div>
                 <p class="formulario__input-error">El dato ingresado no puede contener numeros ni caracteres de otro
@@ -346,8 +364,7 @@
             <div class="formulario__grupo" id="grupo__entidad">
                 <label for="entidad" class="formulario__label">ENTIDAD FEDERATIVA</label>
                 <div class="formulario__grupo-input">
-                    <input type="text" class="formulario__input" name="entidad" id="entidad"
-                        placeholder="Ciudad de Mexico">
+                    <input type="text" class="formulario__input" name="entidad" id="entidad" placeholder="Ciudad de Mexico">
                     <i class="formulario__validacion-estado fas fa-times-circle"></i>
                 </div>
                 <p class="formulario__input-error">El dato ingresado no puede contener numeros ni caracteres de otro
@@ -359,8 +376,7 @@
             <div class="formulario__grupo" id="grupo__telefonovic">
                 <label for="telefonovic" class="formulario__label">TELEFONO</label>
                 <div class="formulario__grupo-input">
-                    <input type="text" class="formulario__input" name="telefonovic" id="telefonovic"
-                        placeholder="5522334455">
+                    <input type="text" class="formulario__input" name="telefonovic" id="telefonovic" placeholder="5522334455">
                     <i class="formulario__validacion-estado fas fa-times-circle"></i>
                 </div>
                 <p class="formulario__input-error">El dato ingresado debe contener solo numeros con un total de 8
@@ -386,8 +402,7 @@
                 <label for="nombrevictima2" class="formulario__label">EN CASO DE SER VICTIMA INDIRECTA, PROPORCIONE
                     NOMBRE COMPLETO DE LA VICTIMA DIRECTA</label>
                 <div class="formulario__grupo-input">
-                    <input type="text" class="formulario__input" name="nombrevictima2" id="nombrevictima2"
-                        placeholder="Luis">
+                    <input type="text" class="formulario__input" name="nombrevictima2" id="nombrevictima2" placeholder="Luis">
                     <i class="formulario__validacion-estado fas fa-times-circle"></i>
                 </div>
                 <p class="formulario__input-error">El dato ingresado no puede contener numeros ni caracteres de otro
@@ -423,8 +438,7 @@
             <div class="formulario__grupo" id="grupo__callehechos">
                 <label for="callehechos" class="formulario__label">CALLE</label>
                 <div class="formulario__grupo-input">
-                    <input type="text" class="formulario__input" name="callehechos" id="callehechos"
-                        placeholder="Av Revolucion">
+                    <input type="text" class="formulario__input" name="callehechos" id="callehechos" placeholder="Av Revolucion">
                     <i class="formulario__validacion-estado fas fa-times-circle"></i>
                 </div>
                 <p class="formulario__input-error">El dato ingresado no puede contener caracteres que no sean letras y
@@ -436,8 +450,7 @@
             <div class="formulario__grupo" id="grupo__numeroexthechos">
                 <label for="numeroexthechos" class="formulario__label">NUMERO EXTERIOR</label>
                 <div class="formulario__grupo-input">
-                    <input type="text" class="formulario__input" name="numeroexthechos" id="numeroexthechos"
-                        placeholder="5678">
+                    <input type="text" class="formulario__input" name="numeroexthechos" id="numeroexthechos" placeholder="5678">
                     <i class="formulario__validacion-estado fas fa-times-circle"></i>
                 </div>
                 <p class="formulario__input-error">El dato ingresado debe contener solo numeros</p>
@@ -448,8 +461,7 @@
             <div class="formulario__grupo" id="grupo__numerointhechos">
                 <label for="numerointhechos" class="formulario__label">NUMERO INTERIOR-</label>
                 <div class="formulario__grupo-input">
-                    <input type="text" class="formulario__input" name="numerointhechos" id="numerointhechos"
-                        placeholder="5678">
+                    <input type="text" class="formulario__input" name="numerointhechos" id="numerointhechos" placeholder="5678">
                     <i class="formulario__validacion-estado fas fa-times-circle"></i>
                 </div>
                 <p class="formulario__input-error">El dato ingresado debe contener solo numeros</p>
@@ -472,8 +484,7 @@
             <div class="formulario__grupo" id="grupo__coloniahechos">
                 <label for="coloniahechos" class="formulario__label">COLONIA</label>
                 <div class="formulario__grupo-input">
-                    <input type="text" class="formulario__input" name="coloniahechos" id="coloniahechos"
-                        placeholder="San Juan de Aragon">
+                    <input type="text" class="formulario__input" name="coloniahechos" id="coloniahechos" placeholder="San Juan de Aragon">
                     <i class="formulario__validacion-estado fas fa-times-circle"></i>
                 </div>
                 <p class="formulario__input-error">El dato ingresado no puede contener numeros ni caracteres de otro
@@ -485,8 +496,7 @@
             <div class="formulario__grupo" id="grupo__alcaldiahechos">
                 <label for="alcaldiahechos" class="formulario__label">ALCALDIA O MUNICIPIO</label>
                 <div class="formulario__grupo-input">
-                    <input type="text" class="formulario__input" name="alcaldiahechos" id="alcaldiahechos"
-                        placeholder="Iztapalapa">
+                    <input type="text" class="formulario__input" name="alcaldiahechos" id="alcaldiahechos" placeholder="Iztapalapa">
                     <i class="formulario__validacion-estado fas fa-times-circle"></i>
                 </div>
                 <p class="formulario__input-error">El dato ingresado no puede contener numeros ni caracteres de otro
@@ -498,8 +508,7 @@
             <div class="formulario__grupo" id="grupo__entidadhechos">
                 <label for="entidadhechos" class="formulario__label">ENTIDAD FEDERATIVA</label>
                 <div class="formulario__grupo-input">
-                    <input type="text" class="formulario__input" name="entidadhechos" id="entidadhechos"
-                        placeholder="Ciudad de Mexico">
+                    <input type="text" class="formulario__input" name="entidadhechos" id="entidadhechos" placeholder="Ciudad de Mexico">
                     <i class="formulario__validacion-estado fas fa-times-circle"></i>
                 </div>
                 <p class="formulario__input-error">El dato ingresado no puede contener numeros ni caracteres de otro
@@ -511,8 +520,7 @@
             <div class="formulario__grupo" id="grupo__fechahechos">
                 <label for="fechahechos" class="formulario__label">FECHA</label>
                 <div class="formulario__grupo-input">
-                    <input type="text" class="formulario__input" name="fechahechos" id="fechahechos"
-                        placeholder="dd/mm/yyyy">
+                    <input type="date" class="formulario__input" name="fechahechos" id="fechahechos" placeholder="dd/mm/yyyy">
                     <i class="formulario__validacion-estado fas fa-times-circle"></i>
                 </div>
                 <p class="formulario__input-error">La fecha debe contener solo numeros, con el formato dd/mm/yyyy, los
@@ -526,8 +534,7 @@
                     DONDE OCURRIERON LOS HECHOS VICTIMIZANTES, FAVOR DE PROPORCIONAR LOS QUE CONOZCA Y UTILICE ESTE
                     ESPACIO PARA AGREGAR OTROS DATOS DE UBICACION</label>
                 <div class="formulario__grupo-input">
-                    <input type="text" class="formulario__input" name="complemento" id="complemento"
-                        placeholder="El lugar fue en...">
+                    <input type="text" class="formulario__input" name="complemento" id="complemento" placeholder="El lugar fue en...">
                     <i class="formulario__validacion-estado fas fa-times-circle"></i>
                 </div>
                 <p class="formulario__input-error">El dato ingresado no puede contener caracteres que no sean letras y
@@ -541,8 +548,7 @@
                     circunstancias de modo, tiempo y lugar, antes, durante y después de los hechos victimizantes. En
                     caso de que los hechos victimizantes atenten contra derechos colectivos, favor de referirlo.</label>
                 <div class="formulario__grupo-input">
-                    <input type="text" class="formulario__input" name="hechos" id="hechos"
-                        placeholder="Los hechos ocurrieron...">
+                    <input type="text" class="formulario__input" name="hechos" id="hechos" placeholder="Los hechos ocurrieron...">
                     <i class="formulario__validacion-estado fas fa-times-circle"></i>
                 </div>
                 <p class="formulario__input-error">El dato ingresado no puede contener caracteres que no sean letras y
@@ -605,8 +611,7 @@
                 <label for="discapacidad" class="formulario__label">EN CASO DE QUE LA VICTIMA TENGA UNA DISCAPACIDAD,
                     COLOCAR EL TIPO DE DISCAPACIDAD</label>
                 <div class="formulario__grupo-input">
-                    <input type="text" class="formulario__input" name="discapacidad" id="discapacidad"
-                        placeholder="VISUAL/MENTAL...">
+                    <input type="text" class="formulario__input" name="discapacidad" id="discapacidad" placeholder="VISUAL/MENTAL...">
                     <i class="formulario__validacion-estado fas fa-times-circle"></i>
                 </div>
                 <p class="formulario__input-error">El dato ingresado no puede contener numeros ni caracteres de otro
@@ -671,8 +676,7 @@
                 <label for="periodista" class="formulario__label">EN CASO DE QUE LA VICTIMA SEA PERIODISTA, COLOCAR EL
                     NOMBRE DEL MEDIO INFORMATIVO</label>
                 <div class="formulario__grupo-input">
-                    <input type="text" class="formulario__input" name="periodista" id="periodista"
-                        placeholder="Noticieros Televisa">
+                    <input type="text" class="formulario__input" name="periodista" id="periodista" placeholder="Noticieros Televisa">
                     <i class="formulario__validacion-estado fas fa-times-circle"></i>
                 </div>
                 <p class="formulario__input-error">El dato ingresado no puede contener numeros ni caracteres de otro
@@ -686,8 +690,7 @@
                 <label for="dezplazado" class="formulario__label">EN CASO DE QUE LA VICTIMA FUERA DEZPLAZADA DENTRO DEL
                     PAIS POR CONDICIONES DE VIOLENCIA, COLOCAR LA ENTIDAD DE SALIDA Y RECEPTORA</label>
                 <div class="formulario__grupo-input">
-                    <input type="text" class="formulario__input" name="dezplazado" id="dezplazado"
-                        placeholder="CDMX-PUEBLA">
+                    <input type="text" class="formulario__input" name="dezplazado" id="dezplazado" placeholder="CDMX-PUEBLA">
                     <i class="formulario__validacion-estado fas fa-times-circle"></i>
                 </div>
                 <p class="formulario__input-error">El dato ingresado no puede contener numeros ni caracteres de otro
@@ -724,7 +727,6 @@
             </div>
             <input class="formulario__btn" type="submit" name="register">
         </form>
-        <br />
 </body>
 
 </html>

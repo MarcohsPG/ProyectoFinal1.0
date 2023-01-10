@@ -20,7 +20,7 @@
 
 .sidebar-header {
     display: flex;
-    justify-content: center;
+    justify-content: space-between;
     align-items: center;
     height: 60px;
     padding: 0rem 1rem;
@@ -69,4 +69,8 @@
 #sidebar-toggle:checked ~ .main-content header {
     left: 60px;
     width: calc(100% - 60px);
+}
+
+.ti-menu-alt {
+    cursor: pointer;
 }

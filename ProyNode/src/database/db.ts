@@ -1,11 +1,11 @@
 import mysql from 'mysql';
 
 const connData = {
-	"host": "localhost",
+	"host": "sql.freedb.tech",
 	"port": 3306,
-	"user": "root",
-	"password": "",
-	"database": "registros"
+	"user": "freedb_alvUser",
+	"password": "yCAx!vXyfTwN?*3",
+	"database": "freedb_registros"
 }
 
 class DB {

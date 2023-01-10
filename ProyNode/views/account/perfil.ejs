@@ -16,10 +16,6 @@
 	<link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous" />
 	<link rel="icon" href="/img/logo.png">
 	<link rel="stylesheet" href="/css/perfil.css" />
-
-	<script>
-		console.log("<%= userData%>");
-	</script>
 </head>
 
 <body>
@@ -47,7 +43,7 @@
 			<div class="perfil-usuario-header">
 				<div class="perfil-usuario-portada">
 					<div class="perfil-usuario-avatar">
-						<img src="./img/inicio.jpg" alt="img-avatar">
+						<img src="/img/avatar.png" alt="img-avatar">
 						<button type="button" class="boton-avatar">
 							<i class="far fa-image"></i>
 						</button>
@@ -60,30 +56,24 @@
 			<div class="perfil-usuario-body">
 				<div class="perfil-usuario-bio">
 					<h3 class="titulo">
-						<?php echo $datosUser['nombres'];echo $datosUser['apellidos']?>
+						<%- userNombres %> <%- userApellidos%>
 					</h3>
-					<p class="texto">
-						<?php echo $datosUser['descripcion'] ?>
-					</p>
 				</div>
 				<div class="perfil-usuario-footer">
 					<ul class="lista-datos">
-						<!--<li><i class="icono fas fa-map-signs"></i> Ubicación:<?php echo $datosUser['ubicacion'] ?></li>-->
 						<li><i class="icono fas fa-phone-alt"></i>Telefono:
-							<?php echo $datosUser['telefono'] ?>
+							<%- userTelefono%>
 						</li>
-						<li><i class="icono fas fa-user-check"></i>Verificado:
-							<?php echo $datosUser['verificado'] ?>
-						</li>
+						<!--<li><i class="icono fas fa-map-signs"></i> Ubicación:<?php echo $datosUser['ubicacion'] ?></li>-->
 						<!--<li><i class="icono fas fa-briefcase"></i> Trabajo actual:<?php echo $datosUser['trabajoActual'] ?></li>-->
 						<!--<li><i class="icono fas fa-building"></i> Cargo u Ocupación:<?php echo $datosUser['ocupacion'] ?></li>-->
 					</ul>
 					<ul class="lista-datos">
-						<!--<li><i class="icono fas fa-map-marker-alt"></i> Dirección:<?php echo $datosUser['direccion'] ?></li>-->
-						<li><i class="icono fas fa-calendar-alt"></i>Edad:
-							<?php echo 2022-$datosUser['edad']; ?>
+						<li><i class="icono fas fa-user-check"></i>Email:
+							<%- userEmail%>
 						</li>
-
+						<!--<li><i class="icono fas fa-map-marker-alt"></i> Dirección:<?php echo $datosUser['direccion'] ?></li>-->
+						<!--<li><i class="icono fas fa-calendar-alt"></i>Edad:<?php echo 2022-$datosUser['edad']; ?></li>-->
 						<!--<li><i class="icono fas fa-share-alt"></i> Habilidades:<?php echo $datosUser['habilidades'] ?></li>-->
 					</ul>
 				</div>
